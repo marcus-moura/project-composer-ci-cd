@@ -42,9 +42,9 @@ jobs:
           python -m pytest -s tests/
 
       - name: Authenticate with Google Cloud
-        uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+        uses: google-github-actions/auth@v1
         with:
-          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
           project_id: eco-hangar-412101
 
       - name: Upload dags to Cloud Storage
