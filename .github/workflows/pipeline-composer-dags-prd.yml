@@ -1,4 +1,4 @@
-name: Composer DAGs CI/CD for Production 
+name: Composer dags CI/CD for Production
 
 # Controls when the workflow will run
 on:
