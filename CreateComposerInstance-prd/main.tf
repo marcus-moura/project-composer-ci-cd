@@ -23,6 +23,14 @@ resource "google_project_iam_member" "attach_role_composer-worker" {
   member  = "serviceAccount:${google_service_account.sa_composer.email}"
 }
 
+# # Attach role ServiceAgentV2Ext in service account composer
+# resource "google_project_iam_member" "attach_role_composer-agentv2" {
+#   project = var.project_id
+#   role    = "roles/composer.ServiceAgentV2Ext"
+  
+#   member  = "serviceAccount:${google_service_account.sa_composer.email}"
+# }
+
 # Create composer instance
 resource "google_composer_environment" "cluster_config_composer" {
   project = var.project_id
@@ -41,8 +49,8 @@ resource "google_composer_environment" "cluster_config_composer" {
         image_version = var.image_version_composer
         airflow_config_overrides = {
             core-dags_are_paused_at_creation = "True"
-            # secrets-backend                  =  "airflow.providers.google.cloud.secrets.secret_manager.CloudSecretManagerBackend"
-            # secrets-backend_kwargs           =  "{'project_id': '${var.project_id}', 'connections_prefix':'airflow-connections', 'variables_prefix':'airflow-variables', 'sep':'-'}"
+            secrets-backend                  =  "airflow.providers.google.cloud.secrets.secret_manager.CloudSecretManagerBackend"
+            secrets-backend_kwargs           =  "{'project_id': '${var.project_id}', 'connections_prefix':'airflow-connections', 'variables_prefix':'airflow-variables', 'sep':'-'}"
         }
 
         env_variables = {
