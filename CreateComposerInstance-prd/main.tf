@@ -23,14 +23,6 @@ resource "google_project_iam_member" "attach_role_composer-worker" {
   member  = "serviceAccount:${google_service_account.sa_composer.email}"
 }
 
-# # Attach role ServiceAgentV2Ext in service account composer
-# resource "google_project_iam_member" "attach_role_composer-agentv2" {
-#   project = var.project_id
-#   role    = "roles/composer.ServiceAgentV2Ext"
-  
-#   member  = "serviceAccount:${google_service_account.sa_composer.email}"
-# }
-
 # Create composer instance
 resource "google_composer_environment" "cluster_config_composer" {
   project = var.project_id
