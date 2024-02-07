@@ -1,53 +1,59 @@
-# This is a basic workflow to help you get started with Actions
+name: CI/CD for Composer Dags Develop
 
-name: CI/CD for Composer Dags
-
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on pull request events but only for the "main" branch
+  # Triggers the workflow on push or pull request events but only for the "develop" branch
+  push:
+    branches: ["develop"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["develop"]
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+
+# Configure env variables
+env:
+  DAGS_BUCKET_PATH: gs://learning-composer-dsv/dags/
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
+  # Defines the workflow job called "build"
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    # Steps will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
+      # Clone the repository
+      - uses: actions/checkout@v4
 
       # Runs a single command using the runners shell        
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.8'
+          python-version: '3.10'
           
       # Runs a set of commands using the runners shell
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
           pip install -r requirements-test.txt
-          
+
+      # Runs tests unit in dags    
       - name: Run tests
         run: |
-          # Assuming your tests are in a directory called tests/
-          # You may need to adjust the path accordingly
           python -m pytest -s tests/
-          
+
+      # Performs authentication on Google Cloud with a json credential allocated in secret github
       - id: 'auth'
         name: 'Authenticate to Google Cloud'
-        uses: 'google-github-actions/auth@v1'
+        uses: 'google-github-actions/auth@v2'
         with:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
-          
+
+      # Configura o Cloud SDK
       - name: Set up Cloud SDK
-        uses: google-github-actions/setup-gcloud@v1
+        uses: google-github-actions/setup-gcloud@v2
       
+      # Runs command gsutil for syns dags
       - name: Upload dags to Cloud Storage
         run: |
-          gsutil -m cp -r dags/* gs://learning-composer-dsv/dags/
+          gsutil -m rsync -r dags ${{ env.DAGS_BUCKET_PATH }}
