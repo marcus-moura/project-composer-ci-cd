@@ -24,18 +24,18 @@ jobs:
     # Steps will be executed as part of the job
     steps:
       # Clone the repository
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       # Performs authentication on Google Cloud with a json credential allocated in secret github
       - id: 'auth'
         name: 'Authenticate to Google Cloud'
-        uses: 'google-github-actions/auth@v1'
+        uses: 'google-github-actions/auth@v2'
         with:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
 
       # Configura o Cloud SDK
       - name: Set up Cloud SDK
-        uses: google-github-actions/setup-gcloud@v1
+        uses: google-github-actions/setup-gcloud@v2
       
       # Runs command gsutil for syns dags
       - name: Upload dags to Cloud Storage
