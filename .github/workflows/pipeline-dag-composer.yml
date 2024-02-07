@@ -38,9 +38,10 @@ jobs:
           # Assuming your tests are in a directory called tests/
           # You may need to adjust the path accordingly
           python -m pytest -s tests/
-
-      - name: Authenticate with Google Cloud
-        uses: google-github-actions/auth@v1
+          
+      - id: 'auth'
+        name: 'Authenticate to Google Cloud'
+        uses: 'google-github-actions/auth@v1'
         with:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
           
