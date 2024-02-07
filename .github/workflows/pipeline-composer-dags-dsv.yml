@@ -56,4 +56,4 @@ jobs:
       # Runs command gsutil for syns dags
       - name: Upload dags to Cloud Storage
         run: |
-          gsutil -m rsync -r dags/*.py ${{ env.DAGS_BUCKET_PATH }}
+          gsutil -m rsync -r dags ${{ env.DAGS_BUCKET_PATH }}
