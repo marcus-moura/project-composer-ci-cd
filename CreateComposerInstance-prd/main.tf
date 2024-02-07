@@ -41,8 +41,8 @@ resource "google_composer_environment" "cluster_config_composer" {
         image_version = var.image_version_composer
         airflow_config_overrides = {
             core-dags_are_paused_at_creation = "True"
-            secrets-backend                  =  "airflow.providers.google.cloud.secrets.secret_manager.CloudSecretManagerBackend"
-            secrets-backend_kwargs           =  "{'project_id': '${var.project_id}', 'connections_prefix':'airflow-connections', 'variables_prefix':'airflow-variables', 'sep':'-'}"
+            # secrets-backend                  =  "airflow.providers.google.cloud.secrets.secret_manager.CloudSecretManagerBackend"
+            # secrets-backend_kwargs           =  "{'project_id': '${var.project_id}', 'connections_prefix':'airflow-connections', 'variables_prefix':'airflow-variables', 'sep':'-'}"
         }
 
         env_variables = {
