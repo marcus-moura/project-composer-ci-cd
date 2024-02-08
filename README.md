@@ -1,93 +1,146 @@
-# Composer Ci/Cd Dags
+# Composer CI/CD Dags
+## Descrição
+Este projeto automatiza o processo de implantação de DAGs do Cloud Composer usando pipelines de CI/CD. Ele envolve a criação de instâncias do Composer com Terraform, configuração de DAGs de exemplo e arquivos de teste, e configuração de jobs de CI/CD para ambientes de desenvolvimento e produção.
 
-One Paragraph of the project description
+## Estrutura do Projeto
 
-Initially appeared on
-[gist](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2). But the page cannot open anymore so that is why I have moved it here.
+```bash
+├── .github/workflows
+│   ├── pipeline-composer-dags-dsv.yml
+│   ├── pipeline-composer-dags-prd.yml
+├── CreateComposerInstance
+│   ├── main.tf
+│   ├── variables.tf
+├── dags
+│   ├── dag.py
+├── tests
+│   ├── test.py
+├── .gitignore
+├── requirements.txt
+├── requirements-test.txt
+├── README.md
+``````
 
-## Getting Started
+## Requisitos
 
-These instructions will give you a copy of the project up and running on
-your local machine for development and testing purposes. See deployment
-for notes on deploying the project on a live system.
+Certifique-se de ter os seguintes pré-requisitos instalados:
 
-### Prerequisites
+- [Terraform](https://www.terraform.io/)
+- [Google Cloud SDK](https://cloud.google.com/sdk)
+- [Python](https://www.python.org/)
 
-Requirements for the software and other tools to build, test and push 
-- [Example 1](https://www.example.com)
-- [Example 2](https://www.example.com)
+## Instalação
 
-### Installing
+1. Clone o repositório:
 
-A step by step series of examples that tell you how to get a development
-environment running
+    ```bash
+    git clone https://github.com/yourusername/composer-ci-cd.git
+    ```
 
-Say what the step will be
+2. Navegue até o diretório do projeto:
 
-    Give the example
+    ```bash
+    cd composer-ci-cd
+    ```
 
-And repeat
+3. Crie e ative um ambiente virtual Python:
+    - Linux:
+        ```bash
+        python3 -m venv venv
+        source venv/bin/activate
+        ```
+    - Windows:
+         ```bash
+        python3 -m venv venv
+        .\venv\Scripts\activate
+         ```
+4. Instale os pacotes Python necessários:
 
-    until finished
+    ```bash
+    pip install -r requirements.txt
+    pip install -r requirements-test.txt
+    ```
 
-End with an example of getting some data out of the system or using it
-for a little demo
+Dessa forma, você terá um ambiente Python isolado para o projeto, evitando conflitos entre dependências de outros projetos.
 
-## Running the tests
+## Uso
 
-Explain how to run the automated tests for this system
+### Criação de Instância do Composer
 
-### Sample Tests
+1. Navegue até o diretório do Terraform:
 
-Explain what these tests test and why
+    ```bash
+    cd CreateComposerInstance-{env}
+    ```
 
-    Give an example
+2. Crie e defina o arquivo `vars_{env}.tfvars` com os parâmetros a serem passados para o Terraform:
 
-### Style test
+    ```tf
+    work_environ                = "ambiente de execução"
+    project_id                  = "id do seu projeto"
+    region                      = "localização do seu projeto"
+    image_version_composer      = "composer-2.4.4-airflow-2.5.3"
+    composer_name               = "nome do composer"
+    sa_composer_name            = "nome da Service Account que será utilizada pelo Composer"
+    bucket_name_composer        = "Nome do bucket que será utilizado pelo Composer."
+    ```
 
-Checks if the best practices and the right coding style has been used.
+3. Execute `terraform init` para inicializar o ambiente Terraform.
+4. Execute `terraform apply -var-file='vars_{environ}.tfvars'` para criar o Composer na GCP de acordo com o ambiente.
 
-    Give an example
+⚠️ Certifique-se de substituir `{env}` pela flag de ambiente que será executada.
 
-## Deployment
+### Criando Dags e Tests
+Crie suas dags e seus arquivos de teste carregando as dags no diretório `dags/` e os testes em `tests/`.
 
-Add additional notes to deploy this on a live system
+#### Executando os Testes
 
-## Built With
+Para executar os testes automatizados deste projeto, execute:
 
-  - [Contributor Covenant](https://www.contributor-covenant.org/) - Used
-    for the Code of Conduct
-  - [Creative Commons](https://creativecommons.org/) - Used to choose
-    the license
+```bash
+pytest -s tests/
+```
+Estes testes validam a funcionalidade das DAGs implantadas.
 
-## Contributing
+### Configurando CI/CD
+Configure os jobs de CI/CD no GitHub Actions seguindo o exemplo dos arquivos `pipeline-composer-dags-dsv.yml` e `pipeline-composer-dags-prd.yml`. Esses arquivos fornecem um modelo para configurar os pipelines de integração contínua e entrega contínua para os ambientes de desenvolvimento e produção, respectivamente.
 
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code
-of conduct, and the process for submitting pull requests to us.
+### Fluxo do CI/CD
 
-## Versioning
+1. **Pipeline de Desenvolvimento**: O pipeline de CI/CD para o ambiente de desenvolvimento é acionado por pushs na branch `develop`. Ele executa as seguintes etapas:
+    - Executa testes automatizados nas DAGs.
+    - Autentica no Google Cloud.
+    - Configura o SDK do Google Cloud.
+    - Faz o upload das DAGs para o Cloud Storage develop.
 
-We use [Semantic Versioning](http://semver.org/) for versioning. For the versions
-available, see the [tags on this
-repository](https://github.com/PurpleBooth/a-good-readme-template/tags).
+    ```yaml
+    pipeline-composer-dags-dsv.yml
+    ```
 
-## Authors
+2. **Pipeline de Produção**: O pipeline de CI/CD para o ambiente de produção é acionado por pull requests na branch `main`. Ele executa as seguintes etapas:
+    - Autentica no Google Cloud.
+    - Configura o SDK do Google Cloud.
+    - Faz o upload das DAGs para o Cloud Storage de produção.
 
-  - **Billie Thompson** - *Provided README Template* -
-    [PurpleBooth](https://github.com/PurpleBooth)
+    ```yaml
+    pipeline-composer-dags-prd.yml
+    ```
 
-See also the list of
-[contributors](https://github.com/PurpleBooth/a-good-readme-template/contributors)
-who participated in this project.
+## Implantação
 
-## License
+Siga estas etapas para implantar o projeto:
 
-This project is licensed under the [CC0 1.0 Universal](LICENSE.md)
-Creative Commons License - see the [LICENSE.md](LICENSE.md) file for
-details
+1. Crie uma instância de desenvolvimento do Composer usando o Terraform.
+2. Crie uma instância de produção do Composer usando o Terraform.
+3. Crie uma DAG de exemplo e um arquivo de teste.
+4. Configure jobs de CI/CD para ambientes de desenvolvimento e produção.
+5. Acione o pipeline CI/CD para cada ambiente conforme necessário.
 
-## Acknowledgments
+## Links Úteis
 
-  - Hat tip to anyone whose code is used
-  - Inspiration
-  - etc
+- [Documentação do Terraform](https://learn.hashicorp.com/tutorials/terraform/install-cli)
+- [Documentação do Google Cloud SDK](https://cloud.google.com/sdk)
+- [Python](https://www.python.org/)
+- [GitHub Actions](https://docs.github.com/pt/actions)
+- [pytest](https://docs.pytest.org/en/7.0.x/)
+- [Google Cloud Composer](https://cloud.google.com/composer)
