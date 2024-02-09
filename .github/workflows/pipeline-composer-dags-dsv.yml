@@ -47,16 +47,6 @@ jobs:
       - name: Set AIRFLOW_HOME
         run: echo "AIRFLOW_HOME=${AIRFLOW_HOME}" >> $GITHUB_ENV
 
-      # Set AIRFLOW_HOME environment variable
-      - name: check db airflow
-        run: |
-          airflow db check
-
-      # Set AIRFLOW_HOME environment variable
-      - name: start db
-        run: |
-          airflow db migrate
-
       # Runs tests unit in dags    
       - name: Run tests
         run: |
