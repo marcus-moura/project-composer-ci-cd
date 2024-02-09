@@ -1,6 +1,6 @@
 from airflow import DAG
-from airflow.utils.dates import days_ago
 from datetime import timedelta
+from airflow.utils.dates import days_ago
 from airflow.utils.task_group import TaskGroup
 from airflow.operators.empty import EmptyOperator
 
@@ -12,13 +12,12 @@ default_args = {
     'retry_delay': timedelta(minutes=5)
 }
 
-with DAG('dag_exemplo_new',
+with DAG('dag_exemple',
          schedule="@once",
          catchup=False, 
          default_args=default_args, 
          tags=['exemplo2', 'learning', 'ci/cd'],
 ) as dag:
-    
     init = EmptyOperator(task_id='start')
     
     with TaskGroup(group_id='group1') as group1:

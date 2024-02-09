@@ -15,11 +15,11 @@ default_args = {
 }
 
 @dag(
-    dag_id="dag_exemplo_decorator",
+    dag_id="dag_exemple_decorator",
     schedule="@once",
     catchup=False, 
     default_args=default_args, 
-    tags=['test_local']
+    tags=['decorator']
 )
 def dag_exemplo_decorator():
 
