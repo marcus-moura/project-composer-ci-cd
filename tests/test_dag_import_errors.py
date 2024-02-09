@@ -2,12 +2,10 @@ import os
 import pytest
 from airflow.models import DagBag
 
-
 def get_import_errors():
     """
     Generate a tuple for import errors in the dag bag
     """
-
     dag_bag = DagBag(include_examples=False)
 
     def strip_path_prefix(path):
@@ -17,7 +15,6 @@ def get_import_errors():
     return [(None, None)] + [
         (strip_path_prefix(k), v.strip()) for k, v in dag_bag.import_errors.items()
     ]
-
 
 @pytest.mark.parametrize(
     "rel_path,rv", get_import_errors(), ids=[x[0] for x in get_import_errors()]
