@@ -17,7 +17,8 @@ on:
 # Configure env variables
 env:
   DAGS_BUCKET_PATH: gs://learning-composer-dsv/dags/
-
+  AIRFLOW_HOME: ${{ github.workspace }}
+  
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # Defines the workflow job called "build"
@@ -42,10 +43,14 @@ jobs:
           pip install -r requirements.txt
           pip install -r requirements-test.txt
 
+      # Set AIRFLOW_HOME environment variable
+      - name: Set AIRFLOW_HOME
+        run: echo "AIRFLOW_HOME=${AIRFLOW_HOME}" >> $GITHUB_ENV
+
       # Runs tests unit in dags    
       - name: Run tests
         run: |
-          python -m pytest -s tests/
+          python -m pytest tests/
 
       # Performs authentication on Google Cloud with a json credential allocated in secret github
       - id: 'auth'
