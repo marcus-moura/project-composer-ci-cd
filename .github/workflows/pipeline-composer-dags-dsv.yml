@@ -17,7 +17,7 @@ on:
 # Configure env variables
 env:
   DAGS_BUCKET_PATH: gs://learning-composer-dsv/dags/
-  AIRFLOW_HOME: ${{ github.workspace }}/..
+  AIRFLOW_HOME: ${{ github.workspace }}
   
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
