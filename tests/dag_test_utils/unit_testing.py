@@ -1,4 +1,5 @@
 from airflow.models.dag import DAG
+from typing import Callable
 from airflow.decorators import dag as dag_decorator
 from airflow.utils.dag_cycle_tester import check_cycle
 import inspect
@@ -14,7 +15,7 @@ def assert_has_valid_dag(module):
             no_dag_found = False
             check_cycle(obj)  # Throws if a task cycle is found.
         # Verifica se o objeto é uma DAG definida usando o decorador @dag
-        elif inspect.isfunction(obj) and hasattr(obj, "_dag_id"):
+        elif callable(obj) and hasattr(obj, "_dag_id"):
             dag = obj._dag
             no_dag_found = False
             check_cycle(dag)  # Throws if a task cycle is found.
