@@ -1,7 +1,13 @@
-from dag_test_utils import unit_testing   
-    
-def test_dag_import():
-    from dags import dag_exemple_decorator as module
+import pytest
 
-    unit_testing.assert_has_valid_dag(module)
-    
+from airflow.models import DagBag
+from airflow.utils.dag_cycle_tester import check_cycle
+
+@pytest.fixture()
+def dagbag():
+    return DagBag(include_examples=False)
+
+
+def test_dag_loaded(dagbag):
+    dag = dagbag.get_dag(dag_id="dag_test_local")
+    check_cycle(dag)
