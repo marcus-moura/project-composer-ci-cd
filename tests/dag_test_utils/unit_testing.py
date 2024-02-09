@@ -14,7 +14,7 @@ def assert_has_valid_dag(module):
             no_dag_found = False
             check_cycle(obj)  # Throws if a task cycle is found.
         # Verifica se o objeto é uma DAG definida usando o decorador @dag
-        elif isinstance(obj, dag):
+        else:
             no_dag_found = False
             check_cycle(obj)  # Throws if a task cycle is found.
 
