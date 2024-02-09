@@ -1,12 +1,14 @@
 from airflow import DAG
-# from datetime import timedelta
-from airflow.utils.dates import days_ago
+from datetime import timedelta
+from airflow.utils.timezone import pendulum
 from airflow.utils.task_group import TaskGroup
 from airflow.operators.empty import EmptyOperator
 
+local_tz = pendulum.timezone("America/Sao_Paulo")
+
 default_args = {
     'owner': "Learning",
-    'start_date': days_ago(1),
+    'start_date': pendulum.today("America/Sao_Paulo").add(days=-1),
     'retries': 1,
     'depends_on_past': False,
     'retry_delay': timedelta(minutes=5)

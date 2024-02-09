@@ -18,7 +18,7 @@ default_args = {
     dag_id="dag_exemple_decorator",
     schedule="@once",
     catchup=False, 
-    default_args=default_args, 
+    default_args=default_args,
     tags=['decorator']
 )
 def dag_exemplo_decorator():
