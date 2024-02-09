@@ -2,7 +2,6 @@ from airflow.models.dag import DAG
 from typing import Callable
 from airflow.decorators import dag as dag_decorator
 from airflow.utils.dag_cycle_tester import check_cycle
-import inspect
 
 def assert_has_valid_dag(module):
     """Assert that a module contains a valid DAG."""
