@@ -9,5 +9,5 @@ def dagbag():
 
 
 def test_dag_loaded(dagbag):
-    dag = dagbag.get_dag(dag_id="dag_test_local")
+    dag = dagbag.get_dag(dag_id="dag_exemple_decorator")
     check_cycle(dag)
