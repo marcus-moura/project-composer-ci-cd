@@ -16,9 +16,8 @@ def assert_has_valid_dag(module):
         # Verifica se o objeto é uma DAG definida usando o decorador @dag
         elif inspect.isfunction(obj) and hasattr(obj, "_dag_id"):
             dag = obj._dag
-            if isinstance(dag, DAG):
-                no_dag_found = False
-                check_cycle(dag)  # Throws if a task cycle is found.
+            no_dag_found = False
+            check_cycle(dag)  # Throws if a task cycle is found.
 
     if no_dag_found:
         raise AssertionError("module does not contain a valid DAG")
