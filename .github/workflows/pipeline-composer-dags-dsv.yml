@@ -50,7 +50,7 @@ jobs:
       # Runs tests unit in dags    
       - name: Run tests
         run: |
-          python -m pytest -s tests/
+          python -m pytest tests/
 
       # Performs authentication on Google Cloud with a json credential allocated in secret github
       - id: 'auth'
