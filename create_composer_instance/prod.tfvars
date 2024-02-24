@@ -1,0 +1,7 @@
+work_environ                = "ambiente de execução"
+project_id                  = "id do seu projeto"
+region                      = "localização do seu projeto"
+image_version_composer      = "composer-2.4.4-airflow-2.5.3"
+composer_name               = "nome do composer"
+sa_composer_name            = "nome da Service Account que será utilizada pelo Composer"
+bucket_name_composer        = "Nome do bucket que será utilizado pelo Composer."
