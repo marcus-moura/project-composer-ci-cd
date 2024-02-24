@@ -70,10 +70,11 @@ Dessa forma, você terá um ambiente Python isolado para o projeto, evitando con
 1. Navegue até o diretório do Terraform:
 
     ```bash
-    cd CreateComposerInstance-{env}
+    cd create_composer_instance
     ```
+2. Crie seu bucket no Cloud Storage e configure o seu backend alterando o parâmetro bucket no arquivo `backend.tf`.
 
-2. Crie e defina o arquivo `vars_{env}.tfvars` com os parâmetros a serem passados para o Terraform:
+3. Substitua o arquivo `{env}.tfvars` com os parâmetros a serem passados para o Terraform:
 
     ```tf
     work_environ                = "ambiente de execução"
@@ -85,8 +86,10 @@ Dessa forma, você terá um ambiente Python isolado para o projeto, evitando con
     bucket_name_composer        = "Nome do bucket que será utilizado pelo Composer."
     ```
 
-3. Execute `terraform init` para inicializar o ambiente Terraform.
-4. Execute `terraform apply -var-file='vars_{environ}.tfvars'` para criar o Composer na GCP de acordo com o ambiente.
+4. Execute `terraform init` para inicializar o ambiente Terraform.
+5. Execute `terraform workspace new {env}` para criar os workspaces de dev e prod.
+6. Execute `terraform workspace select {env}` para selecionar o workspace.
+7. Execute `terraform apply -var-file='{env}.tfvars'` para criar o Composer na GCP de acordo com o ambiente.
 
 ⚠️ Certifique-se de substituir `{env}` pela flag de ambiente que será executada.
 
