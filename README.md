@@ -8,9 +8,12 @@ Este projeto automatiza o processo de implantação de DAGs do Cloud Composer us
 ├── .github/workflows
 │   ├── pipeline-composer-dags-dsv.yml
 │   ├── pipeline-composer-dags-prd.yml
-├── CreateComposerInstance
+├── create_composer_instance
+│   ├── backend.tf
 │   ├── main.tf
 │   ├── variables.tf
+│   ├── dev.tfvars
+│   ├── prod.tfvars
 ├── dags
 │   ├── dag.py
 ├── tests
