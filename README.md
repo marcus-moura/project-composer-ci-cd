@@ -115,6 +115,8 @@ ou utilizando o comando `export` com `xargs`:
 export $(cat .env | xargs)
 ```
 
+> ⚠️ Utilize o arquivo ``exemple.env`` como base.
+
 Dessa forma, você terá um ambiente Python isolado para o projeto, evitando conflitos entre dependências de outros projetos.
 
 ## Uso
