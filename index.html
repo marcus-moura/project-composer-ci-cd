@@ -1,0 +1,1210 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.11">
+    
+    
+      
+        <title>Composer CI/CD</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.7e359304.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-blue" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#composer-cicd" class="md-skip">
+          Ir para o conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href="." title="Composer CI/CD" class="md-header__button md-logo" aria-label="Composer CI/CD" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Composer CI/CD
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Home
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-blue" data-md-color-accent="blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-yellow" data-md-color-accent="blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando a pesquisa
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/marcus-moura/gcp-classic-template-dataflow" title="Ir ao repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    marcus-moura/gcp-classic-template-dataflow
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Composer CI/CD" class="md-nav__button md-logo" aria-label="Composer CI/CD" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Composer CI/CD
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/marcus-moura/gcp-classic-template-dataflow" title="Ir ao repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    marcus-moura/gcp-classic-template-dataflow
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#descricao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Descrição
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arquitetura-do-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arquitetura do Projeto
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#infraestrutura-do-cloud-composer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Infraestrutura do Cloud Composer
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Infraestrutura do Cloud Composer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#arquivo-maintf" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arquivo main.tf
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arquivo-backendtf" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arquivo backend.tf
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arquivos-variablestf-e-tfvars" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arquivos variables.tf e .tfvars
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Arquivos variables.tf e .tfvars">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#arquivo-variablestf" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arquivo variables.tf
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arquivo-tfvars" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arquivo .tfvars
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testes-automatizados" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testes Automatizados
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Testes Automatizados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tipos-de-testes-realizados" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tipos de Testes Realizados
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fluxo-do-cicd" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fluxo do CI/CD
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fluxo do CI/CD">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pipeline-para-ambiente-de-desenvolvimento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pipeline para Ambiente de Desenvolvimento
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pipeline para Ambiente de Desenvolvimento">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-clone-do-repositorio" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Clone do Repositório
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-configuracao-do-ambiente-python-e-instalacao-de-dependencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Configuração do Ambiente Python e Instalação de Dependências
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-definicao-da-variavel-de-ambiente-airflow_home" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Definição da Variável de Ambiente AIRFLOW_HOME
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-execucao-dos-testes-unitarios-nas-dags" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Execução dos Testes Unitários nas DAGs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-autenticacao-no-google-cloud" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Autenticação no Google Cloud
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-configuracao-do-cloud-sdk" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Configuração do Cloud SDK
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-upload-das-dags-para-o-cloud-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Upload das DAGs para o Cloud Storage
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pipeline-para-ambiente-de-producao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pipeline para Ambiente de Produção
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pipeline para Ambiente de Produção">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-clone-do-repositorio_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Clone do Repositório
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-autenticacao-no-google-cloud-e-configuracao-do-cloud-sdk" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Autenticação no Google Cloud e Configuração do Cloud SDK
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-upload-das-dags-para-o-cloud-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Upload das DAGs para o Cloud Storage
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consideracoes-finais" class="md-nav__link">
+    <span class="md-ellipsis">
+      Considerações finais
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#descricao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Descrição
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arquitetura-do-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arquitetura do Projeto
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#infraestrutura-do-cloud-composer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Infraestrutura do Cloud Composer
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Infraestrutura do Cloud Composer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#arquivo-maintf" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arquivo main.tf
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arquivo-backendtf" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arquivo backend.tf
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arquivos-variablestf-e-tfvars" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arquivos variables.tf e .tfvars
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Arquivos variables.tf e .tfvars">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#arquivo-variablestf" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arquivo variables.tf
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arquivo-tfvars" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arquivo .tfvars
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testes-automatizados" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testes Automatizados
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Testes Automatizados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tipos-de-testes-realizados" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tipos de Testes Realizados
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fluxo-do-cicd" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fluxo do CI/CD
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fluxo do CI/CD">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pipeline-para-ambiente-de-desenvolvimento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pipeline para Ambiente de Desenvolvimento
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pipeline para Ambiente de Desenvolvimento">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-clone-do-repositorio" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Clone do Repositório
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-configuracao-do-ambiente-python-e-instalacao-de-dependencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Configuração do Ambiente Python e Instalação de Dependências
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-definicao-da-variavel-de-ambiente-airflow_home" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Definição da Variável de Ambiente AIRFLOW_HOME
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-execucao-dos-testes-unitarios-nas-dags" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Execução dos Testes Unitários nas DAGs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-autenticacao-no-google-cloud" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Autenticação no Google Cloud
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-configuracao-do-cloud-sdk" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Configuração do Cloud SDK
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-upload-das-dags-para-o-cloud-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Upload das DAGs para o Cloud Storage
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pipeline-para-ambiente-de-producao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pipeline para Ambiente de Produção
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pipeline para Ambiente de Produção">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-clone-do-repositorio_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Clone do Repositório
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-autenticacao-no-google-cloud-e-configuracao-do-cloud-sdk" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Autenticação no Google Cloud e Configuração do Cloud SDK
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-upload-das-dags-para-o-cloud-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Upload das DAGs para o Cloud Storage
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consideracoes-finais" class="md-nav__link">
+    <span class="md-ellipsis">
+      Considerações finais
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="composer-cicd">Composer CI/CD</h1>
+<h2 id="descricao">Descrição</h2>
+<p>Este projeto automatiza o processo de implantação de DAGs do Cloud Composer usando pipelines de CI/CD. Ele envolve a criação de instâncias do Composer via Terraform, configuração de DAGs de exemplo e arquivos de teste utilizando pytest, e configuração de jobs de CI/CD para ambientes de desenvolvimento e produção com github actions.</p>
+<h2 id="arquitetura-do-projeto">Arquitetura do Projeto</h2>
+<p><img alt="arquitetura.png" src="arquitetura.png" /></p>
+<h2 id="infraestrutura-do-cloud-composer">Infraestrutura do Cloud Composer</h2>
+<p>Toda a infraestrutura do Cloud Composer é provisionada utilizando o Terraform, o que proporciona uma abordagem automatizada e escalável para configurar e gerenciar ambientes de fluxo de trabalho.</p>
+<h3 id="arquivo-maintf">Arquivo <code>main.tf</code></h3>
+<p>O arquivo <code>main.tf</code> contém a definição dos recursos necessários para configurar o ambiente do Cloud Composer, incluindo a criação do bucket do Cloud Storage, a configuração da conta de serviço e a definição do ambiente do Composer.</p>
+<details class="example">
+<summary>create_composer_instance/main.tf</summary>
+<div class="language-hcl highlight"><pre><span></span><code><span class="kr">provider</span><span class="w"> </span><span class="nv">&quot;google&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="na">project</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="nv">var.project_id</span>
+<span class="na">region</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="nv">var.region</span>
+<span class="p">}</span>
+
+<span class="c1"># Create bucket composer</span>
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_storage_bucket&quot;</span><span class="w"> </span><span class="nv">&quot;create_bucket&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="na">name</span><span class="w">                        </span><span class="o">=</span><span class="w"> </span><span class="nv">var.bucket_name_composer</span>
+<span class="na">location</span><span class="w">                    </span><span class="o">=</span><span class="w"> </span><span class="nv">var.region</span>
+<span class="na">uniform_bucket_level_access</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span>
+<span class="na">force_destroy</span><span class="w">               </span><span class="o">=</span><span class="w"> </span><span class="no">false</span>
+<span class="p">}</span>
+
+<span class="c1"># Create service account composer</span>
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_service_account&quot;</span><span class="w"> </span><span class="nv">&quot;sa_composer&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="na">account_id</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nv">var.sa_composer_name</span>
+<span class="na">display_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Create Service Account for Composer Environment&quot;</span>
+<span class="p">}</span>
+
+<span class="c1"># Attach role worker in service account composer</span>
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_project_iam_member&quot;</span><span class="w"> </span><span class="nv">&quot;attach_role_composer-worker&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="na">project</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">var.project_id</span>
+<span class="na">role</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;roles/composer.worker&quot;</span>
+<span class="na">member</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;serviceAccount:${google_service_account.sa_composer.email}&quot;</span>
+<span class="p">}</span>
+
+<span class="c1"># Create composer instance</span>
+<span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;google_composer_environment&quot;</span><span class="w"> </span><span class="nv">&quot;cluster_config_composer&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="na">project</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">var.project_id</span>
+<span class="na">name</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nv">var.composer_name</span>
+<span class="na">region</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">var.region</span>
+<span class="na">provider</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">google-beta</span>
+<span class="nb">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="na">env</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">var.work_environ</span><span class="p">}</span>
+
+<span class="nb">storage_config</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="na">bucket</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nv">google_storage_bucket.create_bucket.name</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="nb">config</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nb">software_config</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="na">image_version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">var.image_version_composer</span>
+<span class="w">        </span><span class="nb">airflow_config_overrides</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="na">core-dags_are_paused_at_creation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;True&quot;</span>
+<span class="w">            </span><span class="na">secrets-backend</span><span class="w">                  </span><span class="o">=</span><span class="w">  </span><span class="s2">&quot;airflow.providers.google.cloud.secrets.secret_manager.CloudSecretManagerBackend&quot;</span>
+<span class="w">            </span><span class="na">secrets-backend_kwargs</span><span class="w">           </span><span class="o">=</span><span class="w">  </span><span class="s2">&quot;{&#39;project_id&#39;: &#39;${var.project_id}&#39;, &#39;connections_prefix&#39;:&#39;airflow-connections&#39;, &#39;variables_prefix&#39;:&#39;airflow-variables&#39;, &#39;sep&#39;:&#39;-&#39;}&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="nb">env_variables</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="na">work_environ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">var.work_environ</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nb">workloads_config</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nb">scheduler</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="na">cpu</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="m">1</span>
+<span class="w">        </span><span class="na">memory_gb</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="m">2</span>
+<span class="w">        </span><span class="na">storage_gb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span>
+<span class="w">        </span><span class="na">count</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="m">1</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="nb">web_server</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="na">cpu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span>
+<span class="w">        </span><span class="na">memory_gb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span>
+<span class="w">        </span><span class="na">storage_gb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="nb">worker</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="na">cpu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span>
+<span class="w">            </span><span class="na">memory_gb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span>
+<span class="w">            </span><span class="na">storage_gb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span>
+<span class="w">            </span><span class="na">min_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span>
+<span class="w">            </span><span class="na">max_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="nb">triggerer</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="na">cpu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">0.5</span>
+<span class="w">            </span><span class="na">memory_gb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">0.5</span>
+<span class="w">            </span><span class="na">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="na">environment_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ENVIRONMENT_SIZE_SMALL&quot;</span>
+<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</details>
+<h3 id="arquivo-backendtf">Arquivo <code>backend.tf</code></h3>
+<p>O arquivo <code>backend.tf</code> especifica a configuração do backend para o Terraform, indicando onde armazenar o estado do Terraform.</p>
+<div class="language-hcl highlight"><pre><span></span><code><span class="nb">terraform</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kr">backend</span><span class="w"> </span><span class="nv">&quot;gcs&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="na">bucket</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;personal-terraform-backend&quot;</span>
+<span class="w">    </span><span class="na">prefix</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;state&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Criação do bucket</p>
+<p>É importante destacar que para utilizar o backend é necessário ter um bucket criado no Google Cloud Storage.</p>
+</div>
+<h3 id="arquivos-variablestf-e-tfvars">Arquivos <code>variables.tf</code> e <code>.tfvars</code></h3>
+<p>Os arquivos <code>variables.tf</code> e <code>.tfvars</code> desempenham um papel fundamental na definição e configuração das variáveis utilizadas para a criação da infraestrutura do Cloud Composer. Enquanto o arquivo <code>variables.tf</code> define as variáveis e seus tipos, o arquivo <code>.tfvars</code> especifica os valores dessas variáveis para cada ambiente, como desenvolvimento (dev) e produção (prod).</p>
+<h4 id="arquivo-variablestf">Arquivo <code>variables.tf</code></h4>
+<p>No arquivo <code>variables.tf</code>, são declaradas todas as variáveis que serão utilizadas no Terraform para configurar a infraestrutura do Cloud Composer. Essas variáveis incluem informações como o ID do projeto, a região, o nome do bucket do Cloud Storage, o nome da conta de serviço e outras configurações necessárias.</p>
+<details class="example">
+<summary>Exemplo de declaração de variáveis no arquivo <code>variables.tf</code></summary>
+<div class="language-hcl highlight"><pre><span></span><code><span class="kr">variable</span><span class="w"> </span><span class="nv">&quot;project_id&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="na">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ID do projeto do Google Cloud&quot;</span>
+<span class="na">type</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="kt">string</span>
+<span class="p">}</span>
+
+<span class="kr">variable</span><span class="w"> </span><span class="nv">&quot;region&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="na">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Região do Google Cloud para implantar o ambiente do Composer&quot;</span>
+<span class="na">type</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="kt">string</span>
+<span class="p">}</span>
+
+<span class="kr">variable</span><span class="w"> </span><span class="nv">&quot;bucket_name_composer&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="na">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Nome do bucket do Cloud Storage para o ambiente do Composer&quot;</span>
+<span class="na">type</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="kt">string</span>
+<span class="p">}</span>
+
+<span class="c1">// Outras variáveis necessárias...</span>
+</code></pre></div>
+</details>
+<h4 id="arquivo-tfvars">Arquivo <code>.tfvars</code></h4>
+<p>Já no arquivo <code>.tfvars</code>, são atribuídos os valores específicos das variáveis para cada ambiente, permitindo a personalização e a diferenciação entre ambientes, como desenvolvimento e produção. Isso facilita a manutenção e o gerenciamento de múltiplos ambientes com configurações distintas.</p>
+<p>Exemplo de atribuição de valores de variáveis para o ambiente de desenvolvimento:</p>
+<div class="language-hcl highlight"><span class="filename">create_composer_instance/dev.tfvars</span><pre><span></span><code><span class="na">project_id</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;meu-projeto-dev&quot;</span>
+<span class="na">region</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;us-central1&quot;</span>
+<span class="na">bucket_name_composer</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;meu-bucket-dev&quot;</span>
+</code></pre></div>
+<p>Exemplo de atribuição de valores de variáveis para o ambiente de produção:</p>
+<div class="language-hcl highlight"><span class="filename">create_composer_instance/prod.tfvars</span><pre><span></span><code><span class="na">project_id</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;meu-projeto-prod&quot;</span>
+<span class="na">region</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;us-central1&quot;</span>
+<span class="na">bucket_name_composer</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;meu-bucket-prod&quot;</span>
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Substitua as variáveis</p>
+<p>Ao utilizar o projeto, substitua os valores das variáveis dos arquivos com extensão <code>tfvars</code>.</p>
+</div>
+<h2 id="testes-automatizados">Testes Automatizados</h2>
+<p>Neste projeto, os testes automatizados são realizados utilizando a biblioteca pytest. Eles são essenciais para garantir a integridade e o funcionamento correto das DAGs (Directed Acyclic Graphs) que compõem o fluxo de trabalho do Cloud Composer.</p>
+<h3 id="tipos-de-testes-realizados">Tipos de Testes Realizados</h3>
+<p><strong>Teste de Importação</strong>:
+Este teste valida a integridade das DAGs verificando se há erros de importação nos arquivos localizados no diretório <code>dags</code>. Ao garantir que as DAGs possam ser importadas corretamente, minimizamos a ocorrência de erros durante a execução das tarefas agendadas.</p>
+<p><div class="language-python highlight"><span class="filename">tests/test_dag_import_errors.py</span><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pytest</span>
+<span class="kn">from</span> <span class="nn">airflow.models</span> <span class="kn">import</span> <span class="n">DagBag</span>
+
+<span class="k">def</span> <span class="nf">get_import_errors</span><span class="p">():</span>
+    <span class="n">dag_bag</span> <span class="o">=</span> <span class="n">DagBag</span><span class="p">(</span><span class="n">include_examples</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">strip_path_prefix</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;AIRFLOW_HOME&quot;</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="p">[(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)]</span> <span class="o">+</span> <span class="p">[</span>
+        <span class="p">(</span><span class="n">strip_path_prefix</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> <span class="n">v</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">dag_bag</span><span class="o">.</span><span class="n">import_errors</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+    <span class="p">]</span>
+
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span>
+    <span class="s2">&quot;rel_path,rv&quot;</span><span class="p">,</span> <span class="n">get_import_errors</span><span class="p">(),</span> <span class="n">ids</span><span class="o">=</span><span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">get_import_errors</span><span class="p">()]</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">test_import_erros</span><span class="p">(</span><span class="n">rel_path</span><span class="p">,</span> <span class="n">rv</span><span class="p">):</span>
+
+    <span class="k">if</span> <span class="n">rel_path</span> <span class="ow">and</span> <span class="n">rv</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">rel_path</span><span class="si">}</span><span class="s2"> failed to import with message </span><span class="se">\n</span><span class="s2"> </span><span class="si">{</span><span class="n">rv</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<strong>Teste de Tags</strong>:
+O teste de tags verifica se todas as DAGs estão adequadamente etiquetadas. As tags são metadados atribuídos às DAGs que ajudam a organizar e categorizar as tarefas do fluxo de trabalho. Este teste garante que todas as DAGs estejam devidamente identificadas, facilitando a sua gestão e manutenção.</p>
+<div class="language-python highlight"><span class="filename">tests/test_dag_tags.py</span><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pytest</span>
+<span class="kn">from</span> <span class="nn">airflow.models</span> <span class="kn">import</span> <span class="n">DagBag</span>
+
+<span class="k">def</span> <span class="nf">get_dags</span><span class="p">():</span>
+    <span class="n">dag_bag</span> <span class="o">=</span> <span class="n">DagBag</span><span class="p">(</span><span class="n">include_examples</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">strip_path_prefix</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;AIRFLOW_HOME&quot;</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="p">[(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">strip_path_prefix</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">fileloc</span><span class="p">))</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">dag_bag</span><span class="o">.</span><span class="n">dags</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span>
+    <span class="s2">&quot;dag_id,dag,fileloc&quot;</span><span class="p">,</span> <span class="n">get_dags</span><span class="p">(),</span> <span class="n">ids</span><span class="o">=</span><span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">get_dags</span><span class="p">()]</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">test_dag_tags</span><span class="p">(</span><span class="n">dag_id</span><span class="p">,</span> <span class="n">dag</span><span class="p">,</span> <span class="n">fileloc</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="n">dag</span><span class="o">.</span><span class="n">tags</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dag_id</span><span class="si">}</span><span class="s2"> in </span><span class="si">{</span><span class="n">fileloc</span><span class="si">}</span><span class="s2"> has no tags&quot;</span>
+</code></pre></div>
+<p>Esses testes automatizados são fundamentais para garantir a estabilidade e a confiabilidade do processo de implantação automatizada das DAGs no ambiente do Cloud Composer. Eles contribuem para a detecção precoce de problemas e ajudam a manter a qualidade do código ao longo do tempo.</p>
+<div class="admonition warning">
+<p class="admonition-title">Possíveis problemas em ambientes Windows</p>
+<p>Em ambientes Windows, pode ocorrer de os testes não funcionarem corretamente devido a diferenças de comportamento do Apache Airflow nesse sistema operacional. Um erro comum é o <code>ModuleNotFoundError: No module named 'fcntl'</code>, que pode ser causado por incompatibilidades entre o Airflow e o ambiente Windows.</p>
+<p>Esses problemas são geralmente relacionados à falta de suporte para certos recursos específicos do sistema operacional Unix, como o módulo <code>fcntl</code>, que não está disponível no Windows.</p>
+<p>Recomenda-se verificar a documentação do Apache Airflow para possíveis soluções alternativas ou considerar a execução dos testes em um ambiente Unix-like, como Linux ou macOS, onde o Airflow é mais comumente utilizado e testado.</p>
+</div>
+<h2 id="fluxo-do-cicd">Fluxo do CI/CD</h2>
+<h3 id="pipeline-para-ambiente-de-desenvolvimento">Pipeline para Ambiente de Desenvolvimento</h3>
+<p>O pipeline <code>pipeline-composer-dags-dsv.py</code> é responsável por implantar as DAGs no ambiente de desenvolvimento. Ele é acionado automaticamente em eventos de push para a branch <code>develop</code>, permitindo a implantação de alterações em um ambiente isolado de produção. Este pipeline é desencadeado quando ocorrem alterações nos seguintes arquivos ou diretórios:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span class="nt">on</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;develop&quot;</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">paths</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;dags/*&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;tests/*&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;requirements.txt&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;requirements-test.txt&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;.github/workflows/pipeline-composer-dags-dsv.yml&quot;</span>
+<span class="w">  </span><span class="nt">workflow_dispatch</span><span class="p">:</span>
+</code></pre></div>
+<p>Este pipeline realiza as seguintes etapas:</p>
+<h4 id="1-clone-do-repositorio">1. Clone do Repositório</h4>
+<div class="language-yaml highlight"><pre><span></span><code><span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">build-and-deploy</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+</code></pre></div>
+<h4 id="2-configuracao-do-ambiente-python-e-instalacao-de-dependencias">2. Configuração do Ambiente Python e Instalação de Dependências</h4>
+<div class="language-yaml highlight"><pre><span></span><code><span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">build-and-deploy</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v5</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.10&#39;</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install dependencies</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">pip install -r requirements.txt</span>
+<span class="w">          </span><span class="no">pip install -r requirements-test.txt</span>
+</code></pre></div>
+<h4 id="3-definicao-da-variavel-de-ambiente-airflow_home">3. Definição da Variável de Ambiente <code>AIRFLOW_HOME</code></h4>
+<div class="language-yaml highlight"><pre><span></span><code><span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">build-and-deploy</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Set AIRFLOW_HOME</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;AIRFLOW_HOME=${AIRFLOW_HOME}&quot; &gt;&gt; $GITHUB_ENV</span>
+</code></pre></div>
+<h4 id="4-execucao-dos-testes-unitarios-nas-dags">4. Execução dos Testes Unitários nas DAGs</h4>
+<div class="language-yaml highlight"><pre><span></span><code><span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">build-and-deploy</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run tests</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">python -m pytest tests/</span>
+</code></pre></div>
+<h4 id="5-autenticacao-no-google-cloud">5. Autenticação no Google Cloud</h4>
+<div class="language-yaml highlight"><pre><span></span><code><span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">deploy-to-gcs</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">google-github-actions/auth@v2</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">credentials_json</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.GCP_SA_KEY }}</span>
+</code></pre></div>
+<h4 id="6-configuracao-do-cloud-sdk">6. Configuração do Cloud SDK</h4>
+<div class="language-yaml highlight"><pre><span></span><code><span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">deploy-to-gcs</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">google-github-actions/setup-gcloud@v2</span>
+</code></pre></div>
+<h4 id="7-upload-das-dags-para-o-cloud-storage">7. Upload das DAGs para o Cloud Storage</h4>
+<div class="language-yaml highlight"><pre><span></span><code><span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">deploy-to-gcs</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">gsutil -m rsync -r -x &quot;__pycache__&quot; dags ${{ env.DAGS_BUCKET_PATH }}</span>
+</code></pre></div>
+<h3 id="pipeline-para-ambiente-de-producao">Pipeline para Ambiente de Produção</h3>
+<p>O pipeline <code>pipeline-composer-dags-prd.py</code> é responsável por implantar as DAGs no ambiente de produção. Ele é acionado automaticamente em eventos de pull request para a branch <code>main</code>, garantindo que apenas as alterações validadas sejam implantadas no ambiente de produção. Este pipeline é desencadeado quando ocorrem alterações nos seguintes arquivos ou diretórios:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span class="nt">on</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">pull_request</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;main&quot;</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">paths</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;dags/*&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;tests/*&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;requirements.txt&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;requirements-test.txt&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;.github/workflows/pipeline-composer-dags-prd.yml&quot;</span>
+</code></pre></div>
+<p>Este pipeline realiza as seguintes etapas:</p>
+<h4 id="1-clone-do-repositorio_1">1. Clone do Repositório</h4>
+<div class="language-yaml highlight"><pre><span></span><code><span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">deploy-to-gcs</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+</code></pre></div>
+<h4 id="5-autenticacao-no-google-cloud-e-configuracao-do-cloud-sdk">5. Autenticação no Google Cloud e Configuração do Cloud SDK</h4>
+<p>(Autenticação e configuração são semelhantes aos passos do pipeline de produção)</p>
+<h4 id="6-upload-das-dags-para-o-cloud-storage">6. Upload das DAGs para o Cloud Storage</h4>
+<p>(Semelhante ao passo de upload no pipeline de produção)</p>
+<div class="admonition note">
+<p class="admonition-title">Configuração de Segredo e Variáveis no GitHub Actions</p>
+<p>Para o funcionamento correto do CI/CD certifique-se de criar uma service account específica para o projeto no Google Cloud Platform e armazená-la no secret do GitHub Actions. Isso é essencial para garantir que o pipeline de CI/CD tenha acesso às credenciais necessárias para interagir com os recursos do GCP. Além disso, não se esqueça de definir as variáveis de ambiente <code>DAGS_BUCKET_PATH_DEV</code> e <code>DAGS_BUCKET_PATH_PROD</code> no GitHub Actions, para especificar os caminhos dos buckets onde as DAGs serão armazenadas nos ambientes de desenvolvimento e produção, respectivamente.</p>
+</div>
+<h2 id="consideracoes-finais">Considerações finais</h2>
+<div class="admonition tip">
+<p class="admonition-title">Leia o README do Repositório</p>
+<p>Para obter informações sobre como instalar e utilizar o projeto, não deixe de ler o README no repositório oficial do projeto.</p>
+</div>
+<p>Esta documentação fornece uma visão abrangente do projeto, abordando aspectos como a arquitetura, a infraestrutura, os testes automatizados, os fluxos de CI/CD e muito mais. Esperamos que este guia seja útil para entender e utilizar o projeto de forma eficaz.</p>
+<p>Se você tiver alguma dúvida, problema ou sugestão, não hesite em entrar em contato.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": ".", "features": [], "search": "assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "Mais 1 nesta p\u00e1gina", "search.result.more.other": "Mais # nesta p\u00e1gina", "search.result.none": "Nenhum resultado encontrado", "search.result.one": "1 resultado encontrado", "search.result.other": "# resultados encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.8fd75fb4.min.js"></script>
+      
+    
+  </body>
+</html>
