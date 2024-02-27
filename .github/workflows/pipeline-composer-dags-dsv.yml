@@ -16,7 +16,6 @@ on:
 
 # Configure env variables
 env:
-  DAGS_BUCKET_PATH: gs://learning-composer-dsv/dags/
   AIRFLOW_HOME: ${{ github.workspace }}
   
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -66,4 +65,4 @@ jobs:
       # Runs command gsutil for syns dags
       - name: Upload dags to Cloud Storage
         run: |
-          gsutil -m rsync -r -x "__pycache__" dags ${{ env.DAGS_BUCKET_PATH }}
+          gsutil -m rsync -r -x "__pycache__" dags ${{ vars.DAGS_BUCKET_PATH_DEV }}

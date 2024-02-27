@@ -2,6 +2,9 @@
 ## Descrição
 Este projeto automatiza o processo de implantação de DAGs do Cloud Composer usando pipelines de CI/CD. Ele envolve a criação de instâncias do Composer com Terraform, configuração de DAGs de exemplo e arquivos de teste, e configuração de jobs de CI/CD para ambientes de desenvolvimento e produção.
 
+## Documentação do Projeto
+[Documentação](https://marcus-moura.github.io/project-composer-ci-cd/)
+
 ## Estrutura do Projeto
 
 ```bash
@@ -31,38 +34,86 @@ Certifique-se de ter os seguintes pré-requisitos instalados:
 - [Terraform](https://www.terraform.io/)
 - [Google Cloud SDK](https://cloud.google.com/sdk)
 - [Python](https://www.python.org/)
+- [Poetry](https://python-poetry.org/docs/)
 
 ## Instalação
 
-1. Clone o repositório:
+Para a instalação do projeto, siga as instruções abaixo:
 
-    ```bash
-    git clone https://github.com/yourusername/composer-ci-cd.git
-    ```
+### Clonando o Repositório
 
-2. Navegue até o diretório do projeto:
+Clone o repositório do GitHub para o seu ambiente local:
 
-    ```bash
-    cd composer-ci-cd
-    ```
+```bash
+git clone https://github.com/marcus-moura/project-composer-ci-cd.git
+```
 
-3. Crie e ative um ambiente virtual Python:
-    - Linux:
+Navegue até o diretório do projeto recém-clonado:
+
+```bash
+cd composer-ci-cd
+```
+
+### Utilizando `pip`
+
+Se você preferir usar o `pip` para instalar as dependências, siga estas etapas:
+
+1. **Criação e Ativação do Ambiente Virtual Python:**
+
+    - No Linux:
         ```bash
         python3 -m venv venv
         source venv/bin/activate
         ```
-    - Windows:
-         ```bash
+
+    - No Windows:
+        ```bash
         python3 -m venv venv
         .\venv\Scripts\activate
-         ```
-4. Instale os pacotes Python necessários:
+        ```
+
+2. **Instalação dos Pacotes Python Necessários:**
+
+    Execute os seguintes comandos para instalar os pacotes listados nos arquivos `requirements.txt` e `requirements-test.txt`:
 
     ```bash
     pip install -r requirements.txt
     pip install -r requirements-test.txt
     ```
+
+### Utilizando Poetry
+
+Se você preferir usar o gerenciador de pacotes Poetry, siga estas etapas:
+
+1. **Instalação das Dependências com Poetry:**
+
+    Instale as dependências do projeto usando Poetry:
+
+    ```bash
+    poetry install
+    ```
+
+2. **Ativação do Ambiente Virtual:**
+
+    Ative o ambiente virtual criado pelo Poetry:
+
+    ```bash
+    poetry shell
+    ```
+
+### Configuração das Variáveis de Ambiente
+
+Após instalar as dependências, certifique-se de configurar as variáveis de ambiente necessárias. Você pode fazer isso exportando as variáveis de um arquivo `.env`:
+
+```bash
+source .env
+```
+
+ou utilizando o comando `export` com `xargs`:
+
+```bash
+export $(cat .env | xargs)
+```
 
 Dessa forma, você terá um ambiente Python isolado para o projeto, evitando conflitos entre dependências de outros projetos.
 
@@ -104,33 +155,36 @@ Crie suas dags e seus arquivos de teste carregando as dags no diretório `dags/`
 Para executar os testes automatizados deste projeto, execute:
 
 ```bash
-pytest -s tests/
+python -m pytest tests/
 ```
+
+![run_pytest](images/run_pytest.png)
+
 Estes testes validam a funcionalidade das DAGs implantadas.
 
 ### Configurando CI/CD
-Configure os jobs de CI/CD no GitHub Actions seguindo o exemplo dos arquivos `pipeline-composer-dags-dsv.yml` e `pipeline-composer-dags-prd.yml`. Esses arquivos fornecem um modelo para configurar os pipelines de integração contínua e entrega contínua para os ambientes de desenvolvimento e produção, respectivamente.
 
-### Fluxo do CI/CD
+Para configurar os jobs de CI/CD no GitHub Actions, siga o exemplo dos arquivos `pipeline-composer-dags-dsv.yml` e `pipeline-composer-dags-prd.yml`. Esses arquivos fornecem um modelo para configurar os pipelines de integração contínua e entrega contínua para os ambientes de desenvolvimento e produção, respectivamente.
 
-1. **Pipeline de Desenvolvimento**: O pipeline de CI/CD para o ambiente de desenvolvimento é acionado por pushs na branch `develop`. Ele executa as seguintes etapas:
-    - Executa testes automatizados nas DAGs.
-    - Autentica no Google Cloud.
-    - Configura o SDK do Google Cloud.
-    - Faz o upload das DAGs para o Cloud Storage develop.
+Além disso, é necessário configurar um segredo no repositório contendo o JSON da service account criada no ambiente do Google Cloud Platform (GCP). Siga os passos abaixo para configurar este segredo:
 
-    ```yaml
-    pipeline-composer-dags-dsv.yml
-    ```
+![alt text](images/config_secret.png)
 
-2. **Pipeline de Produção**: O pipeline de CI/CD para o ambiente de produção é acionado por pull requests na branch `main`. Ele executa as seguintes etapas:
-    - Autentica no Google Cloud.
-    - Configura o SDK do Google Cloud.
-    - Faz o upload das DAGs para o Cloud Storage de produção.
+1. No repositório do GitHub, vá para a seção "Settings".
+2. No menu lateral, clique em "Secrets".
+3. Clique em "New repository secret".
+4. Nomeie o segredo como `GCP_SA_KEY`.
+5. Cole o conteúdo do JSON da service account no campo "Value".
+6. Clique em "Add secret" para salvar.
 
-    ```yaml
-    pipeline-composer-dags-prd.yml
-    ```
+Além disso, configure duas variáveis de ambiente no GitHub Actions:
+
+![alt text](images/config_variaveis.png)
+
+1. `DAGS_BUCKET_PATH_DEV`: Caminho do bucket onde as DAGs serão armazenadas no ambiente de desenvolvimento.
+2. `DAGS_BUCKET_PATH_PROD`: Caminho do bucket onde as DAGs serão armazenadas no ambiente de produção.
+
+Essas configurações são essenciais para garantir que o ambiente de CI/CD tenha acesso às credenciais necessárias e aos caminhos corretos para implantar as DAGs nos ambientes correspondentes.
 
 ## Implantação
 
