@@ -19,12 +19,21 @@ Este projeto automatiza o processo de implantação de DAGs do Cloud Composer us
 │   ├── prod.tfvars
 ├── dags
 │   ├── dag.py
+├── docs
+│   ├── arquitetura.png
+│   ├── index.md
 ├── tests
 │   ├── test.py
+├── .env
 ├── .gitignore
+├── .python-version
+├── exemple.env
+├── mkdocs.yml
+├── poetry.lock
+├── pyproject.toml
+├── README.md
 ├── requirements.txt
 ├── requirements-test.txt
-├── README.md
 ``````
 
 ## Requisitos
