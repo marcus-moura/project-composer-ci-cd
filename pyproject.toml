@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "project-composer-ci-cd"
+version = "0.1.0"
+description = ""
+authors = ["Marcus <marcus.moura@ipnet.cloud>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.11.1"
+pytest = "^8.0.2"
+apache-airflow = "^2.8.2"
+mkdocs = "^1.5.3"
+mkdocs-material = "^9.5.11"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

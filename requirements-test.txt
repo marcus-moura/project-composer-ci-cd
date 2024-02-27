@@ -1,2 +1,2 @@
-pytest==7.0.1
+pytest==8.0.2
 # cloud_composer_dag_test_utils==1.0.0
